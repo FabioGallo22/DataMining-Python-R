@@ -1,5 +1,7 @@
 # Libro: Data science using Python and R (2019).pdf
 # Donde descargar datasets: http://www.dataminingconsultant.com/
+#    Donde ver la finculación inicial del proyecto a GIT https://www.geeksforgeeks.org/how-to-upload-project-on-github-from-pycharm/
+#              VCS>Enable Version Control Integration.
 
 """
     Capítulo 2
