@@ -3,6 +3,11 @@
 #    Donde ver la finculación inicial del proyecto a GIT https://www.geeksforgeeks.org/how-to-upload-project-on-github-from-pycharm/
 #              VCS>Enable Version Control Integration.
 
+# From https://www.jetbrains.com/help/pycharm/commit-and-push-changes.html
+#   Commit Ctrl+K
+#   Commit and Push Ctrl+Alt+K
+#   Push Ctrl+Shift+K
+
 """
     Capítulo 2
 """
