@@ -16,7 +16,7 @@ crosstab_01 = pd.crosstab(bank_train['previous_outcome'], bank_train['response']
 print(crosstab_01)
 
 
-print("_________________")
+print("_________________****")
 arr = [22,33,44,55,66,77,88,99,00]
 print("Some values 1: ", arr[2:6])
 # print("Some values 2: ", arr.loc[[2,6,7]]) loc es de pandas y solo sirve si creo la estructura con pd.crosstab()
