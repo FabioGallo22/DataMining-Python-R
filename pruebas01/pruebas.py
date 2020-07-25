@@ -48,4 +48,12 @@ plt.show()
 bank_train = pd.read_csv("../datasets/bank_marketing_training") # 31
 print("\n Shape: ", bank_train.shape) # Pag 32. To find the number of rows and columns in the dataset.
 
+bank_train['index'] = pd.Series(range(0,26874)) # pag 32
+
+print("Head: ", bank_train.head) # pag 32
+
+# 3.5.1 how to Change Misleading Field Values Using python, Pag 34
+print("\n Before replacement of  999 for NaN:\n", bank_train['days_since_previous'])
+bank_train['days_since_previous'] = bank_train['days_since_previous'].replace({999: np.NaN})
+print("\n After replacement of 999 for NaN:\n", bank_train['days_since_previous'])
 print("_______\n ")
