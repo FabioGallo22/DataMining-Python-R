@@ -13,6 +13,7 @@
 """
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 print("Hello")
 
 bank_train = pd.read_csv("../datasets/bank_marketing_training") # pag 12
@@ -36,5 +37,13 @@ print(bank_train['age'])
 
 print("_______\n bank_train[['age','job']]")
 print(bank_train[['age','job']]) # pag 15
+
+print("_______\n Gráficos") # pag 17, es necesario añadir la libreria matplotlib
+bank_train['age'].plot(kind='hist')
+plt.show()
+
+"""
+    Capítulo 3
+"""
 
 print("_______\n ")
