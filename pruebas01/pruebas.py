@@ -45,5 +45,7 @@ plt.show()
 """
     Capítulo 3
 """
+bank_train = pd.read_csv("../datasets/bank_marketing_training") # 31
+print("\n Shape: ", bank_train.shape) # Pag 32. To find the number of rows and columns in the dataset.
 
 print("_______\n ")
