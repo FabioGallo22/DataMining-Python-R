@@ -100,4 +100,17 @@ print("\n Age_z sorted: ", bank_train_sort)
 print("\n report the age and marital status of the 15 people who have the largest age_z values:",
       bank_train_sort[['age', 'marital']].head(n=15)) # pag 42
 
+"""
+    Capítulo 4
+"""
+# 4.2.1 how to Construct a Bar Graph with Overlay Using python. Pag 49
+# First, create a contingency table of the values in the predictor and target variables
+crosstab_01 = pd.crosstab(bank_train['previous_outcome'], bank_train['response'])
+crosstab_01.plot(kind='bar', stacked = True)
+#if show_graphics:
+plt.show()
+crosstab_norm = crosstab_01.div(crosstab_01.sum(1), axis=0) # To normalize. Pag 49
+
+
+
 print("_______\n ")
