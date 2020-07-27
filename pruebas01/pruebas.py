@@ -14,6 +14,9 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy import stats
+
+
 
 show_graphics = False
 print("Hello")
@@ -81,8 +84,20 @@ dict_edu = {"education_numeric":
                  "professional.course": 12,
                  "university.degree": 16,
                  "unknown": np.NaN}}
-bank_train.replace(dict_edu, inplace=True) # pag 38
+bank_train.replace(dict_edu, inplace=True) # pag 38 >>>>>>>
 print("\n 'education_numeric' AFTER using dictionary: ", bank_train['education_numeric'])
 
-print("_______\n ")
+# 3.7.1 how to Standardize Numeric Fields Using python. Pag 40
+bank_train['age_z'] = stats.zscore(bank_train['age'])
+print("\n standardized 'age' as a new variable, 'age_z': ", bank_train['age_z'])
 
+# 3.8 IDeNtIFYING OUtLIerS. Pag 40
+# Es 3 porq como se creó una distribución de media 0 y desvío 1, y dice q +-3 veces el desvío, los que están afuera son outliers
+bank_train_outliers = bank_train.query('age_z > 3 | age_z < -3')
+print("\n OUTLIERS: ", bank_train_outliers['age_z'])
+bank_train_sort = bank_train.sort_values(['age_z'], ascending=False)
+print("\n Age_z sorted: ", bank_train_sort)
+print("\n report the age and marital status of the 15 people who have the largest age_z values:",
+      bank_train_sort[['age', 'marital']].head(n=15)) # pag 42
+
+print("_______\n ")
