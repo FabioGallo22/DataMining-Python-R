@@ -107,9 +107,12 @@ print("\n report the age and marital status of the 15 people who have the larges
 # First, create a contingency table of the values in the predictor and target variables
 crosstab_01 = pd.crosstab(bank_train['previous_outcome'], bank_train['response'])
 crosstab_01.plot(kind='bar', stacked = True)
-#if show_graphics:
-plt.show()
+if show_graphics:
+    plt.show()
 crosstab_norm = crosstab_01.div(crosstab_01.sum(1), axis=0) # To normalize. Pag 49
+crosstab_norm.plot(kind='bar', stacked = True)
+if show_graphics:
+    plt.show()
 
 
 
