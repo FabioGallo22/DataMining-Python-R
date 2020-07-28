@@ -118,6 +118,7 @@ crosstab_02 = pd.crosstab(bank_train['response'], bank_train['previous_outcome']
 print("\n Contengency table: \n", crosstab_02)
 print("\n Contengency table (round): \n", round(crosstab_02.div(crosstab_02.sum(0), axis = 1)*100, 1)) # pag 52
 
+#__________________________________________________________________________
 # 4.4.1 how to Construct histograms with Overlay Using python. Pag 55
 bt_age_y = bank_train[bank_train.response == "yes"]['age']
 bt_age_n = bank_train[bank_train.response == "no"]['age']
@@ -139,6 +140,27 @@ if show_graphics:
 # variable and the second one is for the second variable. The first number in each
 # series is the height of the first bar for each variable.
 
-n_table = np.column_stack((n[0], n[1])) # n_table, is a two‐column matrix where each column’s entries hold the heights of each bar
+# n_table, is a two‐column matrix where each column’s entries hold the heights of each bar
+n_table = np.column_stack((n[0], n[1]))
+# To calculate what proportion of the bar is accounted for by each variable, we need to divide each row by the sum across that row.
+n_norm = n_table / n_table.sum(axis=1)[:, None]
+# we create an array whose rows are the exact cuts of each bin
+ourbins = np.column_stack((bins[0:10], bins[1:11])) # Each row in ourbins gives the upper and lower bounds of each bin
+
+# Now, we are ready to create our normalized histogram.
+plt.close('all')
+p1 = plt.bar(x = ourbins[:,0], height = n_norm[:,0], width = ourbins[:, 1] - ourbins[:, 0])
+p2 = plt.bar(x = ourbins[:,0], height = n_norm[:,1], width = ourbins[:, 1] - ourbins[:, 0], bottom = n_norm[:,0])
+plt.legend(['Response = Yes', 'Response = No'])
+plt.title('Normalized Histogram of Age with Response Overlay')
+plt.xlabel('Age')
+plt.ylabel('Proportion')
+if show_graphics:
+    plt.show()
+
+#__________________________________________________________________________
+# 4.5.1 how to perform Binning Based on predictive Value Using python. Pag 59
+#        Bin the values using cut() from the pandas package.
+bank_train['age_binned'] = pd.cut(x = bank_train['age'], bins = [0, 27, 60.01, 100], labels=["Under 27", "27 to 60", "Over 60"], right =False)
 
 print("_______\n ")
