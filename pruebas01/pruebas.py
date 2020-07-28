@@ -114,6 +114,12 @@ crosstab_norm.plot(kind='bar', stacked = True)
 if show_graphics:
     plt.show()
 
+# 4.3.1 how to Construct Contingency tables Using python. Pag 52
+crosstab_02 = pd.crosstab(bank_train['response'], bank_train['previous_outcome'])
+print("\n Contengency table: \n", crosstab_02)
+print("\n Contengency table (round): \n", round(crosstab_02.div(crosstab_02.sum(0), axis = 1)*100, 1)) # pag 52
+
+# 4.4 hIStOGraMS WIth reSpONSe OVerLaY. Pag 53
 
 
 print("_______\n ")
