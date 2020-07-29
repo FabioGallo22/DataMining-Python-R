@@ -161,7 +161,19 @@ if show_graphics:
 #__________________________________________________________________________
 # 4.5.1 how to perform Binning Based on predictive Value Using python. Pag 59
 #        Bin the values using cut() from the pandas package.
+plt.close('all')
 bank_train['age_binned'] = pd.cut(x = bank_train['age'], bins = [0, 27, 60.01, 100], labels=["Under 27", "27 to 60", "Over 60"], right =False)
 print("\nNew column 'age_binned' and 'age':\n", bank_train[['age_binned', 'age']])
-# >>>>>>>>>>>>>>>>> aqui quedé
+
+crosstab_02 = pd.crosstab(bank_train['age_binned'], bank_train['response'])
+crosstab_02.plot(kind='bar', stacked = True, title = 'Bar Graph of Age (Binned) with Response Overlay')
+if show_graphics:
+    plt.show()
+
+"""
+    Capítulo 5
+"""
+
+
 print("_______\n ")
+
