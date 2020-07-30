@@ -16,6 +16,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
 
+from sklearn.model_selection import train_test_split
+import random
 
 show_graphics = False
 print("Hello")
@@ -172,8 +174,18 @@ if show_graphics:
 
 """
     Capítulo 5
+    PREPARING TO MODEL THE DATA
 """
+# 5.2.1 how to partition the Data in python. Pag 70
+bank = pd.read_csv("../datasets/bank-additional.csv")
 
+bank_train, bank_test = train_test_split(bank, test_size = 0.25, random_state = 7)
+
+print("bank.shape (original):\n", bank.shape)
+print("bank_train.shape: \n", bank_train.shape)
+print("bank_test.shape: \n", bank_test.shape)
+
+# donde quedé 5.3 VaLIDatING YOUr partItION
 
 print("_______\n ")
 
