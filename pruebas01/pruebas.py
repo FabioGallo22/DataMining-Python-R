@@ -199,11 +199,22 @@ print("bank_test.shape: \n", bank_test.shape)
 
 # 5.4.1 how to Balance the training Data Set in python. Pag 74
 # First, count how many "yes" are in response
-print("bank_train['response'].value_counts(): \n", bank_train['response'].value_counts())
+print("bank_train['response'].value_counts(): \n", bank_train['response'].value_counts()) # returns no: 2751 yes: 338
 # The loc() command subsets the bank_train data based on the condition bank_train[‘response’] == “yes”
 to_resample = bank_train.loc[bank_train['response'] == "yes"]
+print("to_sample: \n", to_resample)
 # sample from our records of interest
 our_resample = to_resample.sample(n = 841, replace = True) # 841 is the result of a formula according to the porcentaje of "yes" wanted.
+print("our_resample:\n", our_resample)
+
+bank_train_rebal = pd.concat([bank_train, our_resample])
+
+# check new shape bank_train_rebal
+print("bank.shape (original):\n", bank.shape)
+print("bank_train_rebal.shape: \n", bank_train_rebal.shape)
+print("bank_test.shape: \n", bank_test.shape)
+
+print("bank_train_rebal['response'].value_counts(): \n", bank_train_rebal['response'].value_counts()) # returns no: 2751 yes: 1179
 
 print("_______\n ")
 
