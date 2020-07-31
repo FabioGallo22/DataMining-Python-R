@@ -216,5 +216,8 @@ print("bank_test.shape: \n", bank_test.shape)
 
 print("bank_train_rebal['response'].value_counts(): \n", bank_train_rebal['response'].value_counts()) # returns no: 2751 yes: 1179
 
+# 5.5 eStaBLIShING BaSeLINe MODeL perFOrMaNCe. Pag 77
+# donde quede, pag 77
+
 print("_______\n ")
 
