@@ -186,6 +186,14 @@ print("bank_train.shape: \n", bank_train.shape)
 print("bank_test.shape: \n", bank_test.shape)
 
 # donde quedé 5.3 VaLIDatING YOUr partItION
+#       Deriva a leer otro libro "Data Mining and Predictive Analytics", en la pag 148 de ese libro dice exactamente lo mismo
+#           Depending on the variable types involved,
+#           different statistical tests are required.
+#           For a numerical variable, use the two‐sample t‐test for the difference in means.
+#           For a categorical variable with two classes, use the two‐sample Z‐test for the
+#           difference in proportions.
+#           For a categorical variable with more than two classes, use the test for the
+#           homogeneity of proportions.
 
 print("_______\n ")
 
