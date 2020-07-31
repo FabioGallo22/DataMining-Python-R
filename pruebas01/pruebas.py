@@ -177,7 +177,8 @@ if show_graphics:
     PREPARING TO MODEL THE DATA
 """
 # 5.2.1 how to partition the Data in python. Pag 70
-bank = pd.read_csv("../datasets/bank-additional.csv")
+bank = pd.read_csv("../datasets/bank-additional.csv", delimiter=';')
+print("bank: \n", bank)
 
 bank_train, bank_test = train_test_split(bank, test_size = 0.25, random_state = 7)
 
@@ -194,6 +195,15 @@ print("bank_test.shape: \n", bank_test.shape)
 #           difference in proportions.
 #           For a categorical variable with more than two classes, use the test for the
 #           homogeneity of proportions.
+
+
+# 5.4.1 how to Balance the training Data Set in python. Pag 74
+# First, count how many "yes" are in response
+print("bank_train['response'].value_counts(): \n", bank_train['response'].value_counts())
+# The loc() command subsets the bank_train data based on the condition bank_train[‘response’] == “yes”
+to_resample = bank_train.loc[bank_train['response'] == "yes"]
+# sample from our records of interest
+our_resample = to_resample.sample(n = 841, replace = True) # 841 is the result of a formula according to the porcentaje of "yes" wanted.
 
 print("_______\n ")
 
