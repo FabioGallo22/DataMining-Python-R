@@ -17,6 +17,10 @@ import matplotlib.pyplot as plt
 from scipy import stats
 
 from sklearn.model_selection import train_test_split
+
+import statsmodels.tools.tools as stattools
+from sklearn.tree import DecisionTreeClassifier, export_graphviz
+
 import random
 
 show_graphics = False
@@ -217,7 +221,24 @@ print("bank_test.shape: \n", bank_test.shape)
 print("bank_train_rebal['response'].value_counts(): \n", bank_train_rebal['response'].value_counts()) # returns no: 2751 yes: 1179
 
 # 5.5 eStaBLIShING BaSeLINe MODeL perFOrMaNCe. Pag 77
-# donde quede, pag 77
+# Solo unos párrafo de teoría tiene este sección.
+
+"""
+    Capítulo 6
+    DECISION TREES
+"""
+# 6.2.1 how to Build Cart Decision trees Using python. Pag 84
+adult_tr = pd.read_csv("../datasets/adult_ch6_training")
+print("adult_tr:\n", adult_tr)
+# For simplicity, we save the Income variable as y.
+y = adult_tr[['Income']]
+
+# we will make a series of dummy variables for Marital status using the categorical() command.
+mar_np = np.array(adult_tr['Marital status'])
+print("mar_np:\n", mar_np) # returns ['Never-married' 'Divorced' 'Married' ... 'Married' 'Divorced' 'Married']
+(mar_cat, mar_cat_dict) = stattools.categorical(mar_np, drop=True, dictnames = True)
+print("mar_cat:\n", mar_cat) # returns [[0. 0. 1. 0. 0.]  [1. 0. 0. 0. 0.] [0. 1. 0. 0. 0.] ... ]
+print("mar_cat_dict:\n", mar_cat_dict) # returns {0: 'Divorced', 1: 'Married', 2: 'Never-married', 3: 'Separated', 4: 'Widowed'}
 
 print("_______\n ")
 
