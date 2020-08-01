@@ -236,9 +236,32 @@ y = adult_tr[['Income']]
 # we will make a series of dummy variables for Marital status using the categorical() command.
 mar_np = np.array(adult_tr['Marital status'])
 print("mar_np:\n", mar_np) # returns ['Never-married' 'Divorced' 'Married' ... 'Married' 'Divorced' 'Married']
-(mar_cat, mar_cat_dict) = stattools.categorical(mar_np, drop=True, dictnames = True)
+(mar_cat, mar_cat_dict) = stattools.categorical(mar_np, drop=True, dictnames = True) # We save the matrix and dictionary separately using (mar_cat, mar_cat_dict)
 print("mar_cat:\n", mar_cat) # returns [[0. 0. 1. 0. 0.]  [1. 0. 0. 0. 0.] [0. 1. 0. 0. 0.] ... ]
 print("mar_cat_dict:\n", mar_cat_dict) # returns {0: 'Divorced', 1: 'Married', 2: 'Never-married', 3: 'Separated', 4: 'Widowed'}
+
+# add the newly made dummy variables back into the X variables.
+mar_cat_pd = pd.DataFrame(mar_cat)
+X = pd.concat((adult_tr[['Cap_Gains_Losses']], mar_cat_pd), axis = 1)
+print("X:\n", X)
+
+# Since the first column of X is Cap_Gains_Losses, we can specify the names of each column of X.
+X_names = ["Cap_Gains_Losses", "Divorced", "Married", "Never-married", "Separated", "Widowed"]
+# It will help us when visualizing the CART model to know the levels of y as well.
+y_names = ["<=50K", ">50K"]
+# Now, we are ready to run the CART algorithm!
+# The fit() command tells Python to fit the decision tree that was previously
+# specified to the data. The predictor variables are given first, followed by the target
+# variable. Thus, the two inputs to fit() are the X and y objects we created.
+cart01 = DecisionTreeClassifier(criterion = "gini", max_leaf_nodes=5).fit(X,y)
+
+# Finally, to obtain the tree structure, we use the export_graphviz() command.
+export_graphviz(cart01, out_file="../datasets/cart01.dot", feature_names=X_names, class_names=y_names)
+
+# To obtain the classifications of the Income variable for every variable in the
+# training data set, use the predict() command.
+predIncomeCART = cart01.predict(X)
+print("predIncomeCART:\n", predIncomeCART)
 
 print("_______\n ")
 
